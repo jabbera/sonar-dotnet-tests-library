@@ -73,13 +73,13 @@ public class VisualStudioTestResultsFileParser implements UnitTestResultsParser 
     private void handleCountersTag() {
       foundCounters = true;
 
-      int passed = xmlParserHelper.getRequiredIntAttribute("passed");
-      int failed = xmlParserHelper.getRequiredIntAttribute("failed");
-      int errors = xmlParserHelper.getRequiredIntAttribute("error");
-      int timeout = xmlParserHelper.getRequiredIntAttribute("timeout");
-      int aborted = xmlParserHelper.getRequiredIntAttribute("aborted");
+      int passed = xmlParserHelper.getOptionalIntAttribute("passed", 0);
+      int failed = xmlParserHelper.getOptionalIntAttribute("failed", 0);
+      int errors = xmlParserHelper.getOptionalIntAttribute("error", 0);
+      int timeout = xmlParserHelper.getOptionalIntAttribute("timeout", 0);
+      int aborted = xmlParserHelper.getOptionalIntAttribute("aborted", 0);
 
-      int inconclusive = xmlParserHelper.getRequiredIntAttribute("inconclusive");
+      int inconclusive = xmlParserHelper.getOptionalIntAttribute("inconclusive", 0);
 
       int tests = passed + failed + errors + timeout + aborted;
       int skipped = inconclusive;

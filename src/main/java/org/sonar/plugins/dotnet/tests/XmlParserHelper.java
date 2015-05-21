@@ -94,6 +94,20 @@ public class XmlParserHelper {
       throw parseError("Expected an integer instead of \"" + value + "\" for the attribute \"" + name + "\"");
     }
   }
+  
+  public int getOptionalIntAttribute(String name, int defaultIfNotPresent) {
+    String value = getAttribute(name);
+    
+    if (value == null) {
+        return defaultIfNotPresent;
+    }
+	
+	try {
+	  return Integer.parseInt(value);
+	} catch (NumberFormatException e) {
+	  throw parseError("Expected an integer instead of \"" + value + "\" for the attribute \"" + name + "\"");
+	}
+  }
 
   public String getRequiredAttribute(String name) {
     String value = getAttribute(name);

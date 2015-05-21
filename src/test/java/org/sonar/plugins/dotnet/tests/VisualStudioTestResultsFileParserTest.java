@@ -59,6 +59,17 @@ public class VisualStudioTestResultsFileParserTest {
     assertThat(results.skipped()).isEqualTo(11);
     assertThat(results.failures()).isEqualTo(14);
     assertThat(results.errors()).isEqualTo(3);
-  }
+  }  
+  
+  @Test
+  public void valid_missing_failed() throws Exception {
+    UnitTestResults results = new UnitTestResults();
+    new VisualStudioTestResultsFileParser().parse(new File("src/test/resources/visualstudio_test_results/valid_missing_failed.trx"), results);
 
+    assertThat(results.tests()).isEqualTo(29);
+    assertThat(results.passedPercentage()).isEqualTo(14 * 100.0 / 29);
+    assertThat(results.skipped()).isEqualTo(11);
+    assertThat(results.failures()).isEqualTo(12);
+    assertThat(results.errors()).isEqualTo(3);
+  }
 }
